@@ -5,8 +5,6 @@
 
 from typing import Union
 
-import torch
-
 from ..backbones import Weights, _make_dinov2_model
 
 
