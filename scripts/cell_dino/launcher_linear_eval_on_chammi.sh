@@ -1,23 +1,27 @@
 #!/bin/bash
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+#
+# This source code is licensed under the Apache License, Version 2.0
+# found in the LICENSE file in the root directory of this source tree.
 
 # 1 : modify CHANNEL_AGNOSTIC_CELL_MODEL, CHAMMI_DATA_PATH and OUTPUT_DIR below
 # 2 : call this script with the two arguments specified below
 
-#Arguments: 
-# $1 : dataset, e.g  CP 
-# $2 : task number, e.g TASK_TWO   
+#Arguments:
+# $1 : dataset, e.g  CP
+# $2 : task number, e.g TASK_TWO
 
 CHAMMI_DATA_PATH=""
 CHANNEL_AGNOSTIC_CELL_MODEL="path_to_model/model.pth"
 OUTPUTDIR=YOUR_OUTPUT_PATH_$1_$2
 
 if [ "$2" == "TASK_FOUR" ]; then
-    OTHER_ARG="--leave-one-out-dataset $CHAMMI_DATA_PATH/CP/enriched_meta.csv " 
+    OTHER_ARG="--leave-one-out-dataset $CHAMMI_DATA_PATH/CP/enriched_meta.csv"
 elif [ "$1" == "HPA" -a "$2" == "TASK_THREE" ]; then
-    OTHER_ARG="--leave-one-out-dataset $CHAMMI_DATA_PATH/HPA/enriched_meta.csv "
+    OTHER_ARG="--leave-one-out-dataset $CHAMMI_DATA_PATH/HPA/enriched_meta.csv"
 else
     OTHER_ARG=""
-fi  
+fi
 
 if [ $1 != "CP" ]; then
     OTHER_ARG="$OTHER_ARG --resize-size 256"
